@@ -1,4 +1,4 @@
-source("C:/Users/mourahib/Desktop/Postdoc/California data high quantile prob/helper_functions.R")
+source("Functions/helper_functions.R")
 data <- readRDS("C:/Users/mourahib/Desktop/Postdoc/California data high quantile prob/data.rds")
 acres <- data$Acres
 max_acres <- max(acres)
