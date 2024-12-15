@@ -1,5 +1,5 @@
 source("Functions/helper_functions.R")
-data <- readRDS("C:/Users/mourahib/Desktop/Postdoc/California data high quantile prob/data.rds")
+data <- readRDS("Data/data_california.rds")
 acres <- data$Acres
 max_acres <- max(acres)
 p <- 0.9
@@ -8,10 +8,10 @@ empsurv <- emp_surv(acres)
 plot(acres, empsurv, 
      xlab = "Acres", 
      ylab = expression(1 - F(x)), 
-     main = expression("Survival function of acres in California from 2003 to 2024"))
+     main = expression("Survival Function of Acres in California from 2003 to 2024"))
 abline(v = max_acres, col = "red", lwd = 2)
 
-q_acres <- quantile(acres, p = 0.9)
+q_acres <- quantile(acres, p = p)
 exceedances_loss <- acres[ which(acres> q_acres)  ] - q_acres
 lexceedances <- length(exceedances_loss)
 
@@ -54,4 +54,5 @@ abline(a = 0, b = 1, col = "red", lwd = 2, lty = 2)
 #How unusual is the August complex wildfire?
 
 est_prob <- 0.9 * (1 + (gamma_hat *  ( max_acres - q_acres  )   / alpha_hat ) )^(-1/gamma_hat)
+
 
