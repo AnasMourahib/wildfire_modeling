@@ -1,4 +1,4 @@
-source("Likelihood_gpd.R")
+source("Functions/Likelihood_gpd.R")
 source("Functions/helper_functions.R")
 data <- readRDS("Data/data_california.rds")
 acres <- data$Acres
