@@ -41,7 +41,7 @@ emp_quantile <- sort(exceedances_loss)
 plot(gen_par_quantile, emp_quantile, 
      main = "Quantile-Quantile Plot", 
      xlab = "gpd quantile", 
-     ylab = "Empirical Quantiles")
+     ylab = "Empirical quantiles")
 
 # Add the y = x line
 abline(a = 0, b = 1, col = "red", lwd = 2, lty = 2)
