@@ -1,3 +1,4 @@
+source("Likelihood_gpd.R")
 source("Functions/helper_functions.R")
 data <- readRDS("Data/data_california.rds")
 acres <- data$Acres
@@ -22,21 +23,9 @@ q_acres <- quantile(acres, p = p)
 exceedances_loss <- acres[ which(acres> q_acres)  ] - q_acres
 lexceedances <- length(exceedances_loss)
 
-Likelihood <- function(params, exc_loss) {
-  gamma <- params[1]
-  alpha <- params[2]
-  lexc <- length(exc_loss)
-  vec <- 1+ (gamma*  exc_loss/alpha)    
-  if( alpha < 0 || any(vec< 0)   )  
-  {
-    return(10^(16))
-  }
-  if(gamma != 0){
-    S <- log(1+ (gamma*  exc_loss/alpha) ) 
-    Likelihood <-  -1 *lexc * log(alpha) -(1+ (1/gamma)) * sum(S)
-  } 
-  return(-Likelihood)
-}
+
+
+
 init_params <- c(10,1)
 interm <- optim(init_params, exc_loss = exceedances_loss,  Likelihood )$par
 params <- list(gamma = interm[1] , alpha = interm[2])
@@ -61,4 +50,6 @@ abline(a = 0, b = 1, col = "red", lwd = 2, lty = 2)
 #How unusual is the August complex wildfire?
 
 est_prob <- 0.9 * (1 + (gamma_hat *  ( max_acres - q_acres  )   / alpha_hat ) )^(-1/gamma_hat)
+
+
 
