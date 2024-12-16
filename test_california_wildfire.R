@@ -50,6 +50,6 @@ abline(a = 0, b = 1, col = "red", lwd = 2, lty = 2)
 #How unusual is the August complex wildfire?
 
 est_prob <- 0.9 * (1 + (gamma_hat *  ( max_acres - q_acres  )   / alpha_hat ) )^(-1/gamma_hat)
-
+print(est_prob)
 
 
