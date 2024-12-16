@@ -8,7 +8,7 @@ empsurv <- emp_surv(acres)
 plot(acres, empsurv, 
      xlab = "Acres", 
      ylab = expression(1 - F(x)), 
-     main = expression("Survival Function of Acres in California from 2003 to 2024"))
+     main = expression("Survival Function of acres burned in California wildfires from 2003 to 2024"))
 abline(v = max_acres, col = "red", lwd = 2)
 
 q_acres <- quantile(acres, p = p)
@@ -54,5 +54,4 @@ abline(a = 0, b = 1, col = "red", lwd = 2, lty = 2)
 #How unusual is the August complex wildfire?
 
 est_prob <- 0.9 * (1 + (gamma_hat *  ( max_acres - q_acres  )   / alpha_hat ) )^(-1/gamma_hat)
-
 
