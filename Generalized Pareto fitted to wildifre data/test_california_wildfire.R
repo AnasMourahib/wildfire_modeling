@@ -3,7 +3,7 @@ source("Functions/helper_functions.R")
 data <- readRDS("Data/data_california.rds")
 acres <- data$Acres
 max_acres <- max(acres)
-p <- 0.9
+p <- 0.95
 empsurv <- emp_surv(acres) 
 
 
