@@ -25,7 +25,6 @@ lexceedances <- length(exceedances_loss)
 
 
 
-
 init_params <- c(10,1)
 interm <- optim(init_params, exc_loss = exceedances_loss,  Likelihood )$par
 params <- list(gamma = interm[1] , alpha = interm[2])
@@ -51,5 +50,29 @@ abline(a = 0, b = 1, col = "red", lwd = 2, lty = 2)
 
 est_prob <- 0.9 * (1 + (gamma_hat *  ( max_acres - q_acres  )   / alpha_hat ) )^(-1/gamma_hat)
 print(est_prob)
+
+
+######Plot the acres burned each year from 1984 until 2023 in california
+
+install.packages("lubridate")
+library(lubridate)
+data$Date <- as_datetime(data$Date)  # Convert to datetime format
+
+# Filter the data to include only wildfires
+data_wildfire_only <- data[data$`Fire Type` == "Wildfire", ]
+
+# Aggregate the data by year and sum the area_burned
+wildfires_by_year <- aggregate(Acres~ year, data = wildfire_only, sum)
+
+# Load ggplot2 package
+library(ggplot2)
+
+# Create a bar plot using ggplot2
+ggplot(wildfires_by_year, aes(x = year, y = Acres)) +
+  geom_bar(stat = "identity", fill = "lightblue") +
+  labs(title = "Total Acres Burned by Wildfires Each Year in California 1984-2023",
+       x = "Year", y = "Acres Burned") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels
 
 
