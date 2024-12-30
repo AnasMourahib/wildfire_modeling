@@ -54,25 +54,18 @@ print(est_prob)
 
 ######Plot the acres burned each year from 1984 until 2023 in california
 
-install.packages("lubridate")
-library(lubridate)
-data$Date <- as_datetime(data$Date)  # Convert to datetime format
-
-# Filter the data to include only wildfires
-data_wildfire_only <- data[data$`Fire Type` == "Wildfire", ]
-
 # Aggregate the data by year and sum the area_burned
-wildfires_by_year <- aggregate(Acres~ year, data = wildfire_only, sum)
+wildfire_only <- data[data$`Fire Type` == "Wildfire", ]
+wildfires_by_year <- aggregate(Acres~ Year, data = wildfire_only, sum)
 
 # Load ggplot2 package
 library(ggplot2)
 
 # Create a bar plot using ggplot2
-ggplot(wildfires_by_year, aes(x = year, y = Acres)) +
+ggplot(wildfires_by_year, aes(x = Year, y = Acres)) +
   geom_bar(stat = "identity", fill = "lightblue") +
   labs(title = "Total Acres Burned by Wildfires Each Year in California 1984-2023",
        x = "Year", y = "Acres Burned") +
   theme_minimal() + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels
-
 
