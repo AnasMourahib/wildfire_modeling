@@ -1,6 +1,6 @@
 source("Functions/Likelihood_gpd.R")
 source("Functions/helper_functions.R")
-data <- readRDS("Data/data_california.rds")
+data <- readRDS("C:/Users/mourahib/Desktop/github/wildfire_modeling/Generalized Pareto fitted to wildifre data/Data/data_nevada.rds")
 acres <- data$Acres
 max_acres <- max(acres)
 p <- 0.95
@@ -64,7 +64,7 @@ library(ggplot2)
 # Create a bar plot using ggplot2
 ggplot(wildfires_by_year, aes(x = Year, y = Acres)) +
   geom_bar(stat = "identity", fill = "lightblue") +
-  labs(title = "Total Acres Burned by Wildfires Each Year in California 1984-2023",
+  labs(title = "Total Acres Burned by Wildfires Each Year in Nevada 1984-2023",
        x = "Year", y = "Acres Burned") +
   theme_minimal() + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels
