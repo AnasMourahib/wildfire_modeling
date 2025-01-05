@@ -1,6 +1,6 @@
-source("Functions/Likelihood_gpd.R")
-source("Functions/helper_functions.R")
-data <- readRDS("C:/Users/mourahib/Desktop/github/wildfire_modeling/Generalized Pareto fitted to wildifre data/Data/data_nevada.rds")
+source("Generalized Pareto fitted to wildifre data/Functions/Likelihood_gpd.R")
+source("Generalized Pareto fitted to wildifre data/Functions/helper_functions.R")
+data <- readRDS("Generalized Pareto fitted to wildifre data/Data/data_nevada.rds")
 acres <- data$Acres
 max_acres <- max(acres)
 p <- 0.95
@@ -69,3 +69,6 @@ ggplot(wildfires_by_year, aes(x = Year, y = Acres)) +
   theme_minimal() + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels
 
+
+
+saveRDS(data , file = "C:/Users/mourahib/Desktop/github/wildfire_modeling/Generalized Pareto fitted to wildifre data/Data/shasta_temp")
