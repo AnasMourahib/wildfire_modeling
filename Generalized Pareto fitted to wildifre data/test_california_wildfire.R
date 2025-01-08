@@ -71,4 +71,13 @@ ggplot(wildfires_by_year, aes(x = Year, y = Acres)) +
 
 
 
-saveRDS(data , file = "C:/Users/mourahib/Desktop/github/wildfire_modeling/Generalized Pareto fitted to wildifre data/Data/shasta_temp")
+saveRDS(data , file = "C:/Users/mourahib/Desktop/github/wildfire_modeling/Generalized Pareto fitted to wildifre data/Data/shasta_temp.rds")
+
+
+####Compare the mean temperature per year in Shasta DAM station from 1983 to 2024
+data <- readRDS(file="Generalized Pareto fitted to wildifre data/Data/shasta_temp.rds")
+sum_temp_byyear <- aggregate(TOBS~YEAR , data , mean)
+plot(sum_temp_byyear$YEAR, sum_temp_byyear$TOBS, 
+     type = "l", col = "blue", lwd = 2, xlab = "Year", ylab = "Mean Temperature (°F)",
+     main = "Yearly Mean Temperature Trend in Shasta DAM record station (1984-2024)")
+grid()
