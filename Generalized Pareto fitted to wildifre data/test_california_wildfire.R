@@ -81,3 +81,13 @@ plot(sum_temp_byyear$YEAR, sum_temp_byyear$TOBS,
      type = "l", col = "blue", lwd = 2, xlab = "Year", ylab = "Mean Temperature (°F)",
      main = "Yearly Mean Temperature Trend in Shasta DAM record station (1984-2024)")
 grid()
+
+
+
+sum_prcp_byyear <- aggregate(PRCP~YEAR , data , mean)
+plot(sum_prcp_byyear$YEAR, sum_prcp_byyear$PRCP, 
+     type = "l", col = "blue", lwd = 2, 
+     xlab = "Year", ylab = "Total Precipitation (inches)", 
+     main = "Yearly Mean Precipitation Trend in Shasta DAM Record Station (1984-2024)")
+grid()
+
